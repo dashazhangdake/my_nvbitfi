@@ -1,11 +1,14 @@
 # A customized Nvbitfi tool rooted in NVIDIA NVBit and Nvbitfi to test Darknet
 This repo is a revised Nvbitfi toolsets to test Darknet: https://github.com/AlexeyAB/darknet. 
 
-Major Modifications includes:
+Primary Modifications includes:
 
 a. Several indentation/parser bugs in fault injection scripts are fixed 
 
-b. Replaced relative paths in darknet yolov3 source codes and data files with absolute paths. Simply setting the DATASET_PATH to workload datasets is not sufficient. 
+b. Replaced relative paths in darknet yolov3 source codes and data files with absolute paths. Simply setting the DATASET_PATH to workload datasets is not sufficient. As far as I have known: user needs to change following path variables to absolute path:
+ 
+ * line5 in coco.data: names = data/coco.names. This line finds appropriate label names for the coco dataset.
+ * line276 in image.c: sprintf(buff, "data/labels/%d_%d.png", i, j); This line simply provides the path to the pictures of characters drawn on bounding boxes.
 
 ## Summary of current progress
 Performed dummy injections on yolov3 and yolov3-tiny applications. Applications are profileable, excecutable and producing outputs(detection bounding boxes) as expected.
