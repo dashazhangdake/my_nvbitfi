@@ -1,9 +1,5 @@
-# NVBit (NVidia Binary Instrumentation Tool)
-NVIDIA Corporation
+# This is a customized Nvbitfi tool built on the top of NVIDIA NVBit and Nvbitfi
 
-NVBit is covered by the same End User License Agreement as that of the
-NVIDIA CUDA Toolkit. By using NVBit you agree to End User License Agreement
-described in the EULA.txt file.
 
 ## Introduction
 NVBit (NVidia Binary Instrumentation Tool) is a research prototype of a dynamic
