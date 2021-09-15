@@ -1,0 +1,11 @@
+inspecting: simple_add(int)
+num_static_instrs: 72
+maxregs: 8(8)
+ERROR FAIL Detected Signal SIGKILL
+ grp 0: 0 grp 1: 55744 grp 2: 0 grp 3: 111968 grp 4: 55520 grp 5: 169920 grp 6: 337632 grp 7: 225664
+mask: 0x40000000
+beforeVal: 0x2;afterVal: 0x40000002
+regNo: 2
+opcode: LOP3
+pcOffset: 0x70
+tid: 9900

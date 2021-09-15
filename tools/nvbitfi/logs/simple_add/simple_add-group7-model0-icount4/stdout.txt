@@ -1,0 +1,3 @@
+Device 0 (NVIDIA GeForce RTX 3070) is being used
+memory: 7.7922 GB ECC off 46 SMs x1725000
+#CTAs=10, nreps=10, threads/CTA=1024

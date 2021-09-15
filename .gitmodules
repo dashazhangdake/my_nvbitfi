@@ -1,0 +1,3 @@
+[submodule "tools/nvbitfi"]
+	path = tools/nvbitfi
+	url = https://github.com/dashazhangdake/my_nvbitfi.git

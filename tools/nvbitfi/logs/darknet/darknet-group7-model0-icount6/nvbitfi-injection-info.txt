@@ -1,0 +1,7 @@
+7
+0
+voidcutlass_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10::Params)
+299
+84831254
+0.7925310947874302
+0.25842551024342797

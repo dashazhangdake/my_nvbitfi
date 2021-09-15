@@ -1,0 +1,7 @@
+7
+0
+voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
+136
+4461278
+0.3035978910256575
+0.7935187446336184

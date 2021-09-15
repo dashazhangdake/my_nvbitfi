@@ -1,0 +1,10 @@
+1;simple_add(int);0;102498;0.750151933503428;0.8310481158211646:0x230:IADD3:4138:0x4000000:10.024203:4:b'[ 2576.954737] EXT4-fs (sda1)- mounted filesystem with ordered data mode. Opts- (null). Quota mode- none.\n[ 2577.177556] audit- type=1400 audit(1631682001.807-49)- apparmor="DENIED" operation="capable" profile="/usr/sbin/cups-browsed" pid=8026 comm="cups-browsed" capability=23  capname="sys_nice"\n':value_before0x1:value_after0x4000001
+2;simple_add(int);0;25883;0.7826622264527172;0.25784444019611286:0x20:FADD:1741:0x100:0.5272:3:b'':value_before0x0:value_after0x100
+3;simple_add(int);0;236701;0.21868838141956515;0.04386797309642332:0x2f0:FADD:10068:0x2:0.526516:3:b'':value_before0x140:value_after0x142
+4;simple_add(int);0;65073;0.6164662328753396;0.9625897390835989:0x70:LOP3:9900:0x40000000:10.024662:4:b'':value_before0x2:value_after0x40000002
+5;simple_add(int);0;203562;0.6552343657515581;0.11664951100540011:0x290:FADD:7502:0x8:0.526992:3:b'':value_before0x0:value_after0x8
+6;simple_add(int);0;52304;0.1669635469309454;0.03055768593629138:0x60:IADD3:7558:0x1:0.558063:3:b'':value_before0x9:value_after0x8
+7;simple_add(int);0;183619;0.5477692401331549;0.7342660572188585:0x2a0:FADD:8999:0x800000:0.558576:3:b'':value_before0x0:value_after0x800000
+8;simple_add(int);0;141149;0.9618927487064501;0.8137443261954195:0x230:IADD3:596:0x4000000:10.024659:4:b'':value_before0x1:value_after0x4000001
+9;simple_add(int);0;143309;0.09417609233714108;0.4640963925099014:0x240:IADD3:7955:0x4000:0.527047:3:b'':value_before0x9:value_after0x4009
+10;simple_add(int);0;232265;0.040809895192417955;0.4512119911618414:0x2b0:FADD:6153:0x4000:0.558608:3:b'':value_before0x0:value_after0x4000
