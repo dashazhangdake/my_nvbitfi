@@ -1,4 +1,4 @@
-# A customized Nvbitfi tool built on the top of NVIDIA NVBit and Nvbitfi
+# A customized Nvbitfi tool rooted in NVIDIA NVBit and Nvbitfi
 
 
 ## Introduction
