@@ -1,169 +1,47 @@
-# A customized Nvbitfi tool rooted in NVIDIA NVBit and Nvbitfi
-This repo is a revised Nvbitfi toolsets. Modifications includes:
+# A customized Nvbitfi tool rooted in NVIDIA NVBit and Nvbitfi to test Darknet
+This repo is a revised Nvbitfi toolsets to test Darknet: https://github.com/AlexeyAB/darknet. 
 
-a. Several minor bugs in Python scripts are fixed 
+Major Modifications includes:
 
-b. Darknet yolov3 is configured and profiled
+a. Several indentation/parser bugs in fault injection scripts are fixed 
 
-## Introduction
-NVBit (NVidia Binary Instrumentation Tool) is a research prototype of a dynamic
-binary instrumentation library for NVIDIA GPUs.
+b. Replaced relative paths in darknet yolov3 source codes and data files with absolute paths. Simply setting the DATASET_PATH to workload datasets is not sufficient. 
 
-NVBit provides a set of simple APIs that enable writing a variety of
-instrumentation tools. Example of instrumentation tools are: dynamic
-instruction counters, instruction tracers, memory reference tracers,
-profiling tools, etc.
+## Summary of current progress
+Performed dummy injections on yolov3 and yolov3-tiny applications. Applications are profileable, excecutable and producing outputs(detection bounding boxes) as expected.
 
-NVBit allows writing instrumentation tools (which we call **NVBit tools**)
-that can inspect and modify the assembly code (SASS) of a GPU application
-without requiring recompilation, thus dynamic. NVBit allows instrumentation
-tools to inspect the SASS instructions of each function (\_\_global\_\_ or
-\_\_device\_\_) as it is loaded for the first time in the GPU. During this
-phase is possible to inject one or more instrumentation calls to arbitrary
-device functions before (or after) a SASS instruction. It is also possible to
-remove SASS instructions, although in this case NVBit does not guarantee that
-the application will continue to work correctly.
+# Detailed steps 
 
-NVBit tries to be as low overhead as possible, although any injection of
-instrumentation function has an associated cost due to saving and restoring
-application state before and after jumping to/from the instrumentation
-function.
+There are three main steps to run NVBitFI. We provide a sample script (test.sh) that automates nearly all these steps.
 
-Because NVBit does not require application source code, any pre-compiled GPU
-application should work regardless of which compiler (or version) has been
-used (i.e. nvcc, pgicc, etc).
+## Step 0: Setup
 
-## Requirements
+ * One-time only: Copy NVBitFI package to tool directory in NVBit installation (see the above commands) 
+ * Every time we run an injection campaign: Setup environment (see Step 0 (2) in test.sh)
+ * One-time only: Build the injector and profiler tools (see Step 0 (3) in test.sh)
+ * One-time only: Run and collect golden stdout and stderr files for each of the applications (see Step 0 (4) in test.sh). 
+    * Record fault-free outputs: Record golden output file (as golden.txt), stdout (as golden\_stdout.txt), and stderr (as golden\_stderr.txt) in the workload directory (e.g., nvbitfi/test-apps/simple\_add).
+    * Create application-specific scripts: Create run.sh and sdc\_check.sh scripts in workload directory. Instead of using absolute paths, please use environment variables for paths such as BIN\_DIR, APP\_DIR, and DATASET\_DIR. These variables are set in set\_env function in scripts/common\_functions.py. See the scripts in the nvbitfi/test-apps/simple\_add directory for examples.
+    * Workloads will be run from logs/workload-name/run-name directory. It would be great if the workload can run from this directory. If the program requires input files to be in a specific location, either update the workload or provide soft links to the input files in appropriate locations. 
+    * The program output should be deterministic. Please exclude non-deterministic values (e.g., runtimes) from the file if they are present in one of the output files (see test-apps/simple\_add/sdc\_check.sh for more details).
 
-* SM compute capability:              >= 3.5 && <= 8.0
-* Host CPU:                           x86\_64, ppc64le, aarch64
-* OS:                                 Linux
-* GCC version :                       >= 5.3.0 for x86\_64; >= 7.4.0 for ppc64le and aarch64
-* CUDA version:                       >= 10.1
-* CUDA driver version:                <= 450.00
+## Step 1: Profile and generate injection list
 
-Currently no Embedded GPUs or ARMs host are supported.
+ * Profile the application: Run the program once by using profiler/profiler.so. We provide scripts/run\_profiler.py script for this step. A new file named nvbitfi-igprofile.txt will be generated in logs/workload-name directory. This file contains the instruction counts for all the instruction groups and opcodes defined in common/arch.h. One line is created per dynamic kernel invocation.
+   Profiling is often slow as it instruments every instruction in every dynamic kernel. Using an approximate profile can speed it up by orders of magnitude. There are many ways to approximate a profile and trade-off accuracy for speed. In this release we implement a method that approximates the profiles of all dynamic invocations of a static kernel with the profile of the first invocation of the static kernel. It essentially profiles all static kernels just ones, which can make the profiling very fast if a program has few static kernels and many dynamic involutions per kernel. This approximation can be enabled by using the `SKIP_PROFILED_KERNELS` flag while building the profiler. 
+ * Generate injection sites:
+    * Ensure that the parameters are set correctly in scripts/params.py.  Following are some of the parameters that need user attention: 
+		* Setting maximum number of error injections to perform per instruction group and bit-flip model combination. See NUM\_INJECTION and THRESHOLD\_JOBS in scripts/params.py. 
+		* Selecting instruction groups and bit-flip models (more details in scripts/params.py). 
+		* Listing the applications, benchmark suite name, application binary file name, and the expected runtime on the system where the injection job will be run. See the apps dictionary in scripts/params.py for an example. The expected runtime defined here is used later to determine when to timeout injection runs (based on the TIMEOUT\_THRESHOLD defined in scripts/params.py).
+    * Run scripts/generate\_injection\_list.py to generate a file that contains a list of errors to be injected during the injection campaign. Instructions are selected randomly from the instructions of the selected instruction group. 
 
-## Getting Started with NVBit
+## Step 2: Run the error injection campaign
 
-NVBit is provided in a .tgz file containing this README file and three folders:
-1. A ```core``` folder, which contains the main static library
-```libnvbit.a``` and various headers files (among which the ```nvbit.h```
-file which contains all the main NVBit APIs declarations).
-2. A ```tools``` folder, which contains various source code examples of NVBit
-tools. A new user of NVBit, after familiarizing with these pre-existing tools
-will typically make a copy of one of them and modify appropriately.
-3. A ```test-apps``` folder, which contains a simple application that can be
-used to test NVBit tools. There is nothing special about this application, it
-is a simple vector addition program.
+Run scripts/run\_injections.py to launch the error injection campaign. This script will run one injection run at a time in the standalone mode.  If you plan to run multiple injection runs in parallel, please take special care to ensure that the output file is not clobbered. As of now, we support running multiple jobs on a multi-GPU system. Please see scripts/run\_one\_injection.py for more details. 
 
+Tip: Perform a few dummy injections before proceeding with full injection campaign (by setting DUMMY flag in injector/Makefile. Setting this flag will allow you to go through most of the SASSI handler code but skip the error injection. This is to ensure that you are not seeing crashes/SDCs that you should not see.
 
-To compile the NVBit tools simply type ```make``` from  inside the ```tools```
-folder (make sure ```nvcc``` is in your PATH).
-Compile the test application by typing ```make``` inside the ```test-apps```
-folder.
-__Note__: if you are making your own tool, make sure you link it to c++
-standard library, which is required by NVBit, otherwise, you might see
-missing symbol errors. ```nvcc``` does it by default, but if you specify
-your own host compiler using ```nvcc -ccbin=<compiler>```, you need to point
-to a c++ compiler or add ```-lstdc++```.
+## Step 3: Parse the results
 
-## Using an NVBit tool
-
-Before running an NVBit tool, make sure ```nvdisasm``` is in your PATH. In
-Ubuntu distributions this is typically done by adding /usr/local/cuda/bin or
-/usr/local/cuda-"version"/bin to the PATH environment variable.
-
-To use an NVBit tool we simply LD_PRELOAD the tool before the application
-execution command.
-
-For instance if the application vector add runs natively as:
-
-```
-./test-apps/vectoradd/vectoradd
-```
-
-and produces the following output:
-
-```
-Final sum = 100000.000000; sum/n = 1.000000 (should be ~1)
-```
-
-we would use the NVBit tool which performs instruction count as follow:
-
-```
-LD_PRELOAD=./tools/instr_count/instr_count.so ./test-apps/vectoradd/vectoradd
-```
-
-The output for this command should be the following:
-
-```no-highlight
-------------- NVBit (NVidia Binary Instrumentation Tool) Loaded --------------
-NVBit core environment variables (mostly for nvbit-devs):
-            NVDISASM = nvdisasm - override default nvdisasm found in PATH
-            NOBANNER = 0 - if set, does not print this banner
------------------------------------------------------------------------------
-         INSTR_BEGIN = 0 - Beginning of the instruction interval where to apply instrumentation
-           INSTR_END = 4294967295 - End of the instruction interval where to apply instrumentation
-        KERNEL_BEGIN = 0 - Beginning of the kernel launch interval where to apply instrumentation
-          KERNEL_END = 4294967295 - End of the kernel launch interval where to apply instrumentation
-    COUNT_WARP_LEVEL = 1 - Count warp level or thread level instructions
-    EXCLUDE_PRED_OFF = 0 - Exclude predicated off instruction from count
-        TOOL_VERBOSE = 0 - Enable verbosity inside the tool
-----------------------------------------------------------------------------------------------------
-kernel 0 - vecAdd(double*, double*, double*, int) - #thread-blocks 98,  kernel instructions 50077, total instructions 50077
-Final sum = 100000.000000; sum/n = 1.000000 (should be ~1)
-```
-
-As we can see, before the original output, there is a print showing the kernel
-call index "0", the kernel function prototype
-"vecAdd(double*, double*, double*, int)", total number of thread blocks launched
- in this kernel "98", the number of executed instructions in the kernel "50077",
- and for the all application "50077".
-
-When the application starts, also two banners are printed showing the environment
-variables (and their current values) that can be used to control the NVBit core
-or the specific NVBit Tool.
-Mostly of the NVBit core environment variable are used for core
-debugging/development purposes.
-Set the environment value NOBANNER=1 to disable the core banner if that
-information is not wanted.
-
-### Examples of NVBit Tools
-
-As explained above, inside the ```tools``` folder there are few example of
-NVBit tools. Rather than describing all of them in this README file we refer
-to comment in the source code of each one them.
-
-The natural order (in terms of complexity) to learn these tools is:
-
-1. instr_count: Perform thread level instruction count. Specifically, a
-function is injected before each SASS instruction. Inside this function the
-total number of active threads in a warp is computed and a global counter is
-incremented.
-
-2. opcode_hist: Generate an histogram of all executed instructions.
-
-3. mov_replace: Replace each SASS instruction of type MOV with an equivalent
-function. This tool make use of the read/write register functionality within
-the instrumentation function.
-
-4. instr_countbb: Perform thread level instruction count by instrumenting
-basic blocks. The final result is the same as instr_count, but mush faster
-since less instructions are instrumented (only the first instruction in each
-basic block is instrumented and the counter).
-
-5. mem_printf: Print memory reference addresses for each global LOAD/STORE
-using the GPU side printf. This is accomplished by injecting an
-instrumentation function before each SASS instruction performing global
-LOAD/STORE, passing the register values and immediate used by that
-instruction (used to compute the resulting memory address) and performing the
-printf.
-
-6. mem_trace: Trace memory reference addresses. This NVBit tool works
-similarly to the above example but instead of using a GPU side printf it uses
-a communication channel (provided in utils/channel.hpp) to transfer data from
-GPU-to-CPU and it performs the printf on the CPU side.
-
-We also suggest to take a look to nvbit.h (and comments in it) to get
-familiar with the NVBit APIs.
+Use the scripts/parse\_results.py script to parse the results. This script generates three tab-separated values (tsv) files. The first file shows the fraction of executed instructions for different instruction groups and opcodes. The second file shows the outcomes of the error injections.  Refer to CAT\_STR in scripts/params.py for the list of error outcome categories. The third file shows the average runtime for the injection runs for different applications and selected error models. These files can be opened using a spreadsheet program (e.g., Excel) for plotting and analysis.
