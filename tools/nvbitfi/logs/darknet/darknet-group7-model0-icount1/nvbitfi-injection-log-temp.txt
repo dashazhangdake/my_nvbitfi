@@ -1,0 +1,15 @@
+inspecting: add_bias_kernel(float*,float*,int,int,int,int)
+num_static_instrs: 80
+maxregs: 12(12)
+Injection data
+index: 2
+kernel_name: add_bias_kernel(float*,float*,int,int,int,int)
+ctas: 5408
+instrs: 113056096
+ grp 0: 0 grp 1: 11546848 grp 2: 3778528 grp 3: 17199584 grp 4: 3828448 grp 5: 76702688 grp 6: 109227648 grp 7: 92028064
+mask: 0x8000
+beforeVal: 0x3d800000;afterVal: 0x3d808000
+regNo: 5
+opcode: MUFU
+pcOffset: 0x160
+tid: 1856797

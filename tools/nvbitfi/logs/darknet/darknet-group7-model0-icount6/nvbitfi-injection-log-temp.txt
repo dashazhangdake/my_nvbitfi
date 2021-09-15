@@ -1,0 +1,15 @@
+inspecting: voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
+num_static_instrs: 1368
+maxregs: 64(64)
+Injection data
+index: 55
+kernel_name: voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
+ctas: 48
+instrs: 16168800
+ grp 0: 0 grp 1: 9888704 grp 2: 2247104 grp 3: 420096 grp 4: 732608 grp 5: 2880288 grp 6: 15436192 grp 7: 15016096
+mask: 0x8000000
+beforeVal: 0xc0841465;afterVal: 0xc8841465
+regNo: 49
+opcode: FFMA
+pcOffset: 0x20e0
+tid: 2837

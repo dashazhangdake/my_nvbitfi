@@ -1,7 +1,7 @@
 7
 0
-voidcutlass_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10::Params)
-299
-84831254
-0.7925310947874302
-0.25842551024342797
+voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
+55
+14697548
+0.35341110841579726
+0.8526397935752094

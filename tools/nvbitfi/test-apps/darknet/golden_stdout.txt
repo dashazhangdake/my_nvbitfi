@@ -4,10 +4,12 @@ Create CUDA-stream - 0
  Create cudnn-handle 0 
 
  seen 64, trained: 32013 K-images (500 Kilo-batches_64) 
- Detection layer: 82 - type = 28 
- Detection layer: 94 - type = 28 
- Detection layer: 106 - type = 28 
-data/dog.jpg: Predicted in 11.217000 milli-seconds.
-bicycle: 99%
-dog: 100%
-truck: 93%
+ Detection layer: 16 - type = 28 
+ Detection layer: 23 - type = 28 
+fidata/dog.jpg: Predicted in 1.980000 milli-seconds.
+dog: 81%
+bicycle: 38%
+car: 71%
+truck: 41%
+truck: 62%
+car: 40%

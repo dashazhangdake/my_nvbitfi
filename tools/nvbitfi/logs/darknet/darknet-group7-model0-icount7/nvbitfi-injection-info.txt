@@ -1,7 +1,7 @@
 7
 0
-add_bias_kernel(float*,float*,int,int,int,int)
-2
-259755591
-0.02555918466945517
-0.34603540139994104
+voidcutlass_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10::Params)
+75
+5881645
+0.12775635197390478
+0.8758708786478856

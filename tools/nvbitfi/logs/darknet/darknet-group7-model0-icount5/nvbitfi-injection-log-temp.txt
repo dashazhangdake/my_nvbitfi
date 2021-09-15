@@ -1,0 +1,15 @@
+inspecting: ampere_scudnn_128x32_relu_small_nn_v1
+num_static_instrs: 1336
+maxregs: 128(128)
+Injection data
+index: 1
+kernel_name: ampere_scudnn_128x32_relu_small_nn_v1
+ctas: 1352
+instrs: 278403552
+ grp 0: 0 grp 1: 149213888 grp 2: 25978432 grp 3: 25951552 grp 4: 13371872 grp 5: 63887808 grp 6: 265031680 grp 7: 239080128
+mask: 0x40000
+beforeVal: 0x0;afterVal: 0x40000
+regNo: 120
+opcode: P2R
+pcOffset: 0x3a50
+tid: 66589

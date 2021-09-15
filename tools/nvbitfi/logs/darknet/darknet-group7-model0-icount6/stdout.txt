@@ -3,4 +3,18 @@ NVBit core environment variables (mostly for nvbit-devs):
             NVDISASM = nvdisasm - override default nvdisasm found in PATH
             NOBANNER = 0 - if set, does not print this banner
 ---------------------------------------------------------------------------------
-nvbit_at_init:end
+net.optimized_memory = 0 
+mini_batch = 1, batch = 1, time_steps = 1, train = 0 
+Create CUDA-stream - 0 
+ Create cudnn-handle 0 
+
+ seen 64, trained: 32013 K-images (500 Kilo-batches_64) 
+ Detection layer: 16 - type = 28 
+ Detection layer: 23 - type = 28 
+/home/qiuh/Reworks/nvbit_release/tools/nvbitfi/test-apps/darknet/fidata/dog.jpg: Predicted in 4056.579000 milli-seconds.
+dog: 81%
+bicycle: 38%
+car: 71%
+truck: 41%
+truck: 62%
+car: 40%

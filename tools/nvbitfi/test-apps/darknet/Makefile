@@ -194,9 +194,9 @@ setchmod:
 	chmod +x *.sh
 
 test:
-	./darknet detect
+	./darknet detector test fidata/coco.data fidata/yolov3-tiny.cfg fidata/yolov3-tiny.weights fidata/dog.jpg -don_show
 golden:
-	./darknet detect >golden_stdout.txt 2>golden_stderr.txt
+	./darknet detector test fidata/coco.data fidata/yolov3-tiny.cfg fidata/yolov3-tiny.weights fidata/dog.jpg -don_show >golden_stdout.txt 2>golden_stderr.txt
 clobber:
 	rm -f golden* *_regcount.p stdout* stderr*
 

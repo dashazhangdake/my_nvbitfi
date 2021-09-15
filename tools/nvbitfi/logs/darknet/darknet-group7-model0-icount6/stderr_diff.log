@@ -1,0 +1,4 @@
+34c34
+< Loading weights from /home/qiuh/Reworks/nvbit_release/tools/nvbitfi/test-apps/darknet/fidata/yolov3-tiny.weights...Done! Loaded 24 layers from weights-file 
+---
+> Loading weights from fidata/yolov3-tiny.weights...Done! Loaded 24 layers from weights-file 

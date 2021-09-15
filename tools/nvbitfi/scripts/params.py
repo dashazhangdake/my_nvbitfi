@@ -35,8 +35,8 @@ if 'NVBITFI_HOME' not in os.environ:
 	sys.exit(-1)
 NVBITFI_HOME = os.environ['NVBITFI_HOME']
 
-# verbose = True
-verbose = False
+verbose = True
+# verbose = False
 
 detectors = True
 
@@ -213,9 +213,16 @@ apps = {
 			NVBITFI_HOME + '/test-apps/darknet', # workload directory
 			'darknet', # binary name
 			NVBITFI_HOME + '/test-apps/darknet/', # path to the binary file
-			1, # expected runtime
+			10, # expected runtime
 			"detect coco.data yolov3.cfg yolov3.weights dog.jpg" # additional parameters to the run.sh
 		],
+		# 'darknet': [
+		# 	NVBITFI_HOME + '/test-apps/darknet1', # workload directory
+		# 	'darknet', # binary name
+		# 	NVBITFI_HOME + '/test-apps/darknet1/', # path to the binary file
+		# 	1, # expected runtime
+		# 	"" # additional parameters to the run.sh
+		# ],
 }
 
 #########################################################################

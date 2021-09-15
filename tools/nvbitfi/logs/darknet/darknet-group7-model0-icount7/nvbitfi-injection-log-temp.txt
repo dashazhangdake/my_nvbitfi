@@ -1,0 +1,15 @@
+inspecting: voidcutlass_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10::Params)
+num_static_instrs: 1512
+maxregs: 102(102)
+Injection data
+index: 75
+kernel_name: voidcutlass_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10::Params)
+ctas: 44
+instrs: 6849600
+ grp 0: 0 grp 1: 819520 grp 2: 149984 grp 3: 875072 grp 4: 81696 grp 5: 4923328 grp 6: 6767904 grp 7: 5892832
+mask: 0x10000000
+beforeVal: 0xbe6a954a;afterVal: 0xae6a954a
+regNo: 7
+opcode: FADD
+pcOffset: 0x3c70
+tid: 427

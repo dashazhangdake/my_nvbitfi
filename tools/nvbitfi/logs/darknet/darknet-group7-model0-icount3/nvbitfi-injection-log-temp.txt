@@ -1,0 +1,15 @@
+inspecting: ampere_scudnn_128x32_relu_small_nn_v1
+num_static_instrs: 1336
+maxregs: 128(128)
+Injection data
+index: 1
+kernel_name: ampere_scudnn_128x32_relu_small_nn_v1
+ctas: 1352
+instrs: 89211520
+ grp 0: 0 grp 1: 48437152 grp 2: 8361568 grp 3: 7763392 grp 4: 4159840 grp 5: 20489568 grp 6: 85051680 grp 7: 77288288
+mask: 0x80
+beforeVal: 0x0;afterVal: 0x80
+regNo: 64
+opcode: FSEL
+pcOffset: 0x4d10
+tid: 14727

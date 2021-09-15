@@ -1,7 +1,7 @@
 7
 0
-voidimplicit_convolve_sgemm<float,float,1024,5,5,3,3,3,1,false,false,true>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,bool,int,int)
-9
-705499236
-0.32817639350367334
-0.3420625703404625
+ampere_scudnn_128x32_relu_small_nn_v1
+1
+77113298
+0.160863085727441
+0.24171577558544888

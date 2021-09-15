@@ -1,0 +1,16 @@
+inspecting: voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
+num_static_instrs: 1368
+maxregs: 64(64)
+Injection data
+index: 55
+kernel_name: voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
+ctas: 48
+instrs: 40720335
+ grp 0: 0 grp 1: 25304151 grp 2: 5505024 grp 3: 1097134 grp 4: 2011333 grp 5: 6802693 grp 6: 38709002 grp 7: 37611868
+mask: 0x0
+beforeVal: 0x0;afterVal: 0x0
+regNo: -1
+opcode: NOP
+pcOffset: 0x0
+tid: -1
+Error not injected

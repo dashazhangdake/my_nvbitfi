@@ -1,0 +1,18 @@
+1,5d0
+< ------------- NVBit (NVidia Binary Instrumentation Tool v1.5.3) Loaded --------------
+< NVBit core environment variables (mostly for nvbit-devs):
+<             NVDISASM = nvdisasm - override default nvdisasm found in PATH
+<             NOBANNER = 0 - if set, does not print this banner
+< ---------------------------------------------------------------------------------
+14c9
+< /home/qiuh/Reworks/nvbit_release/tools/nvbitfi/test-apps/darknet/fidata/dog.jpg: Predicted in 4045.032000 milli-seconds.
+---
+> fidata/dog.jpg: Predicted in 1.980000 milli-seconds.
+16c11,15
+< bicycle: 39%
+---
+> bicycle: 38%
+> car: 71%
+> truck: 41%
+> truck: 62%
+> car: 40%

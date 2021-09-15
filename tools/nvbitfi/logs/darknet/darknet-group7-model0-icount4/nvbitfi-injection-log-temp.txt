@@ -1,0 +1,15 @@
+inspecting: forward_maxpool_layer_kernel(int,int,int,int,int,int,int,int,float*,float*,int*)
+num_static_instrs: 264
+maxregs: 25(25)
+Injection data
+index: 9
+kernel_name: forward_maxpool_layer_kernel(int,int,int,int,int,int,int,int,float*,float*,int*)
+ctas: 676
+instrs: 30056864
+ grp 0: 0 grp 1: 2387648 grp 2: 460928 grp 3: 5329024 grp 4: 2392160 grp 5: 19487104 grp 6: 27664704 grp 7: 22335680
+mask: 0x4000
+beforeVal: 0x0;afterVal: 0x4000
+regNo: 0
+opcode: SHF
+pcOffset: 0x840
+tid: 123019

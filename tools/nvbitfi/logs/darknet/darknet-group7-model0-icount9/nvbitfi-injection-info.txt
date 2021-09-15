@@ -1,7 +1,7 @@
 7
 0
-voidprecomputed_convolve_sgemm<float,1024,5,5,4,3,3,1,false>(int,int,int,floatconst*,int,float*,floatconst*,kernel_conv_params,unsignedlonglong,int,float,float,int,floatconst*,floatconst*,int*)
-147
-307972620
-0.5460485981086586
-0.7654513374063219
+add_bias_kernel(float*,float*,int,int,int,int)
+2
+48032493
+0.6484484520865667
+0.05676701569301024

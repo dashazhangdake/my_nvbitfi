@@ -99,6 +99,6 @@ def set_env(app, is_profiler):
 		os.environ['PRELOAD_FLAG'] = "LD_PRELOAD=" + p.INJECTOR_LIB 
 	if p.verbose: print ("BIN_DIR=%s" %(os.environ['BIN_DIR']))
 	if p.verbose: print ("PRELOAD_FLAG=%s" %(os.environ['PRELOAD_FLAG']))
-	if p.verbose: print ("RODINIA=%s" %(os.environ['RODINIA']))
+	# if p.verbose: print ("RODINIA=%s" %(os.environ['RODINIA']))
 	if p.verbose: print ("APP_DIR=%s" %(os.environ['APP_DIR']))
 

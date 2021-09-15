@@ -1,0 +1,15 @@
+inspecting: add_bias_kernel(float*,float*,int,int,int,int)
+num_static_instrs: 80
+maxregs: 12(12)
+Injection data
+index: 2
+kernel_name: add_bias_kernel(float*,float*,int,int,int,int)
+ctas: 5408
+instrs: 61508384
+ grp 0: 0 grp 1: 6307584 grp 2: 2028544 grp 3: 9334272 grp 4: 2080768 grp 5: 41757216 grp 6: 59427616 grp 7: 50093344
+mask: 0x2
+beforeVal: 0x5;afterVal: 0x7
+regNo: 0
+opcode: IADD3
+pcOffset: 0x220
+tid: 989934

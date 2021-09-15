@@ -1,0 +1,15 @@
+inspecting: voidcudnn::ops::nchwToNhwcKernel<float,float,float,false,true,(cudnnKernelDataType_t)2>(cudnn::ops::nchw2nhwc_params_t<float>,floatconst*,float*)
+num_static_instrs: 488
+maxregs: 39(39)
+Injection data
+index: 37
+kernel_name: voidcudnn::ops::nchwToNhwcKernel<float,float,float,false,true,(cudnnKernelDataType_t)2>(cudnn::ops::nchw2nhwc_params_t<float>,floatconst*,float*)
+ctas: 16384
+instrs: 326935890
+ grp 0: 0 grp 1: 9450406 grp 2: 7267886 grp 3: 43985380 grp 4: 76844578 grp 5: 189387640 grp 6: 250091312 grp 7: 206105932
+mask: 0x400000
+beforeVal: 0x0;afterVal: 0x400000
+regNo: 15
+opcode: IADD3
+pcOffset: 0x1a80
+tid: 3197953

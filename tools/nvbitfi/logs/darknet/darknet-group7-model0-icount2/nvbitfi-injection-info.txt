@@ -1,7 +1,7 @@
 7
 0
-sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_kernel
-383
-216113
-0.5526627847386617
-0.1348142864152969
+ampere_scudnn_128x32_relu_small_nn_v1
+1
+47986463
+0.7530877108015486
+0.043080752526596156
