@@ -1,9 +1,9 @@
-# NVBit (NVidia Binary Instrumentation Tool)
-NVIDIA Corporation
+# A customized Nvbitfi tool rooted in NVIDIA NVBit and Nvbitfi
+This repo is a revised Nvbitfi toolsets. Modifications includes:
 
-NVBit is covered by the same End User License Agreement as that of the
-NVIDIA CUDA Toolkit. By using NVBit you agree to End User License Agreement
-described in the EULA.txt file.
+a. Several minor bugs in Python scripts are fixed 
+
+b. Darknet yolov3 is configured and profiled
 
 ## Introduction
 NVBit (NVidia Binary Instrumentation Tool) is a research prototype of a dynamic
